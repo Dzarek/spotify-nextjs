@@ -1,14 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { deezerApi } from "./services/deezerApi";
+import playerReducer from "./playerSlice";
 
 export const store = configureStore({
   reducer: {
-    [deezerApi.reducerPath]: deezerApi.reducer,
+    player: playerReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(deezerApi.middleware),
 });
 
-// Typy dla hooków
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

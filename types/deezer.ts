@@ -9,6 +9,7 @@ export interface DeezerTrack {
   title: string;
   preview: string;
   artist: DeezerArtist;
+  album: { cover_medium: string };
 }
 
 export interface DeezerChartResponse {

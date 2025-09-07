@@ -1,8 +1,11 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Providers } from "./providers";
+import Footer from "@/components/Footer";
+import VideoBackground from "@/components/VideoBackground";
 
 export const metadata = {
-  title: "Deezer App",
+  title: "Music App",
 };
 
 export default function RootLayout({
@@ -13,7 +16,16 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <VideoBackground />
+          <div className="w-4/5 mr-[20%] relative z-10 flex flex-col bg-[rgba(0,0,0,0.7)]">
+            <main className="flex-1 p-10">{children}</main>
+            <Footer />
+          </div>
+          <div className="w-1/5 fixed top-0 right-0 h-screen z-20">
+            <Navbar />
+          </div>
+        </Providers>
       </body>
     </html>
   );
