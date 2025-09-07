@@ -3,6 +3,12 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Footer from "@/components/Footer";
 import VideoBackground from "@/components/VideoBackground";
+import { Saira_Condensed } from "next/font/google";
+
+const saira = Saira_Condensed({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
+});
 
 export const metadata = {
   title: "Music App",
@@ -15,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body>
+      <body className={saira.className}>
         <Providers>
           <VideoBackground />
           <div className="w-4/5 mr-[20%] relative z-10 flex flex-col bg-[rgba(0,0,0,0.7)]">

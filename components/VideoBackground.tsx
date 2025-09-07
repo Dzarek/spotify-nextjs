@@ -14,11 +14,11 @@ export default function VideoBackground() {
       muted
       loop
       playsInline
-      //   ref={(video) => {
-      //     if (!video) return;
-      //     if (isPlaying) video.play().catch(() => {});
-      //     else video.pause();
-      //   }}
+      ref={(video) => {
+        if (!video) return;
+        if (isPlaying) video.play().catch(() => {});
+        else video.pause();
+      }}
     />
   );
 }

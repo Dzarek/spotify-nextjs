@@ -13,7 +13,7 @@ export default function Player() {
   if (!activeSong) return null; // nic nie pokazuj, dopóki nie kliknięto
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 flex items-center">
+    <div className="fixed bottom-0 left-0 w-4/5 bg-white border-t shadow-lg p-4 flex items-center">
       <img
         src={activeSong.album.cover_medium}
         alt={activeSong.title}
