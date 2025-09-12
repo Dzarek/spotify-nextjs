@@ -9,13 +9,14 @@ import {
   HiOutlineUserGroup,
 } from "react-icons/hi";
 import Link from "next/link";
-import { Luckiest_Guy } from "next/font/google";
+import Image from "next/image";
+// import { Luckiest_Guy } from "next/font/google";
 import Title from "./Title";
 
-const luckiestGuy = Luckiest_Guy({
-  subsets: ["latin"],
-  weight: "400",
-});
+// const luckiestGuy = Luckiest_Guy({
+//   subsets: ["latin"],
+//   weight: "400",
+// });
 
 const links = [
   {
@@ -44,7 +45,7 @@ const links = [
   },
 ];
 
-const logo = "../logo512.png";
+const logo = "/logo512.png";
 
 const NavLinks = ({ handleClick }: { handleClick?: () => void }) => {
   return (
@@ -72,7 +73,13 @@ const Navbar = () => {
   return (
     <>
       <div className="md:flex justify-start items-center hidden flex-col w-full h-full py-10 px-4 bg-gradient-to-b from-[#0f091b] via-[#260e41] to-[#06010c] shadow-[inset_20px_0_20px_-5px_rgba(0,0,0,0.8)]">
-        <img src={logo} alt="logo" className="w-3/5 object-contain" />
+        <Image
+          src={logo}
+          width={500}
+          height={500}
+          alt="logo"
+          className="w-3/5 object-contain"
+        />
         <Title title="MUSIC APP" styles=" text-2xl text-white" />
         <NavLinks />
       </div>

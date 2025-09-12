@@ -1,17 +1,29 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import SongCard from "../components/SongCard";
-import Player from "../components/Player";
-import { DeezerChartResponse } from "../types/deezer";
 import Title from "@/components/Title";
+import { useGetTopChartsQuery } from "../services/deezerApi";
+import Loading from "./loading";
+import GlobalError from "./error";
+import MiniPlayer from "@/components/MiniPlayer";
+import { useDispatch } from "react-redux";
+import { setQueue } from "@/store/playerSlice";
 
-export default async function Home() {
-  const res = await fetch("https://api.deezer.com/chart?limit=50", {
-    cache: "no-store", // zawsze świeże dane (SSR)
-  });
+export default function Home() {
+  const [limit, setLimit] = useState(50);
+  const { data, error, isLoading } = useGetTopChartsQuery(limit);
+  const dispatch = useDispatch();
 
-  if (!res.ok) {
-    throw new Error("Nie udało się pobrać danych z Deezer API."); // przechwyci error.tsx
-  }
-  const data: DeezerChartResponse = await res.json();
+  useEffect(() => {
+    if (data && data.tracks?.data?.length) {
+      dispatch(setQueue(data.tracks.data));
+    }
+  }, [data, dispatch]);
+
+  if (isLoading) return <Loading />;
+  if (error) return <GlobalError error={error} />;
+  if (!data) return <p>Brak danych</p>;
 
   return (
     <div className="p-6">
@@ -19,12 +31,13 @@ export default async function Home() {
         title="Najlepsze Listy Przebojów"
         styles=" text-4xl font-bold mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-20">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-20">
         {data.tracks.data.map((track) => (
           <SongCard key={track.id} song={track} />
         ))}
       </div>
-      <Player />
+      <button onClick={() => setLimit(limit + 50)}>Załaduj więcej</button>
+      <MiniPlayer tracks={data.tracks.data} />
     </div>
   );
 }

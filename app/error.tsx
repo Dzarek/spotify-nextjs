@@ -1,14 +1,16 @@
 "use client";
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { TbMoodSadDizzy } from "react-icons/tb";
+import { useRouter } from "next/navigation";
 
 export default function GlobalError({
   error,
-  reset,
 }: {
-  error: Error;
-  reset: () => void;
+  error: FetchBaseQueryError | SerializedError;
 }) {
   console.log(error);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -16,12 +18,11 @@ export default function GlobalError({
       <h2 className="text-xl font-bold text-white">
         Ups, coś poszło nie tak...
       </h2>
-      {/* <p className="text-gray-500 mt-2">{error.message}</p> */}
       <button
-        onClick={reset}
+        onClick={() => router.refresh()}
         className="mt-4 px-4 py-2 bg-green-500 text-white rounded cursor-pointer"
       >
-        Spróbuj ponownie
+        Odśwież stronę
       </button>
     </div>
   );
