@@ -21,7 +21,7 @@ const ProgressBar = ({ progress, duration, onSeek }: ProgressBarProps) => {
         max={duration}
         value={progress}
         onChange={(e) => onSeek(Number(e.target.value))}
-        className="w-[70%] mx-auto accent-blue-500"
+        className="w-[70%] mx-auto accent-purple-500"
       />
       <span className="w-[15%] text-center">{getTime(duration)}</span>
     </div>

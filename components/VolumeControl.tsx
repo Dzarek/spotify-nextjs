@@ -17,7 +17,7 @@ const VolumeControl = ({ volume, onChange }: VolumeControlProps) => (
       step="0.01"
       value={volume}
       onChange={(e) => onChange(Number(e.target.value))}
-      className="w-full accent-blue-500"
+      className="w-full accent-purple-500"
     />
   </div>
 );

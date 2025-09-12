@@ -5,7 +5,7 @@ export interface Track {
   title: string;
   preview: string;
   artist: { name: string };
-  album: { cover_medium: string };
+  album: { cover_medium?: string };
 }
 
 interface PlayerState {

@@ -14,7 +14,7 @@ export default function SongCard({ song }: { song: Track }) {
       className="cursor-pointer border border-purple-600 rounded-lg p-3 bg-zinc-900 hover:bg-zinc-900 duration-500"
     >
       <Image
-        src={song.album.cover_medium}
+        src={song.album.cover_medium ? song.album.cover_medium : "/logo.png"}
         alt={song.title}
         width={600}
         height={600}

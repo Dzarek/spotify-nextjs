@@ -19,7 +19,7 @@ export default function GlobalError({
         Ups, coś poszło nie tak...
       </h2>
       <button
-        onClick={() => router.refresh()}
+        onClick={() => router.push(window.location.pathname)}
         className="mt-4 px-4 py-2 bg-green-500 text-white rounded cursor-pointer"
       >
         Odśwież stronę

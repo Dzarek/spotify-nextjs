@@ -6,7 +6,6 @@ import Title from "@/components/Title";
 import { useGetTopChartsQuery } from "../services/deezerApi";
 import Loading from "./loading";
 import GlobalError from "./error";
-import MiniPlayer from "@/components/MiniPlayer";
 import { useDispatch } from "react-redux";
 import { setQueue } from "@/store/playerSlice";
 
@@ -21,7 +20,7 @@ export default function Home() {
     }
   }, [data, dispatch]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <Loading title="Ładowanie muzyki..." />;
   if (error) return <GlobalError error={error} />;
   if (!data) return <p>Brak danych</p>;
 
@@ -31,13 +30,18 @@ export default function Home() {
         title="Najlepsze Listy Przebojów"
         styles=" text-4xl font-bold mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-20">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-20 mb-[5vh]">
         {data.tracks.data.map((track) => (
           <SongCard key={track.id} song={track} />
         ))}
       </div>
-      <button onClick={() => setLimit(limit + 50)}>Załaduj więcej</button>
-      <MiniPlayer tracks={data.tracks.data} />
+      <button
+        className="Btn mx-auto mb-[5vh]"
+        onClick={() => setLimit(limit + 50)}
+        disabled={isLoading}
+      >
+        {isLoading ? "Chwilka..." : "Załaduj więcej"}
+      </button>
     </div>
   );
 }

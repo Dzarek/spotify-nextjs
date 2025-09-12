@@ -28,7 +28,7 @@ const links = [
   {
     id: 2,
     name: "Wyszukaj Utwór",
-    to: "/",
+    to: "/search",
     icon: HiOutlineHashtag,
   },
   {

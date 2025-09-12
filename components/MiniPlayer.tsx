@@ -59,9 +59,10 @@ export default function MiniPlayer() {
   };
 
   if (!activeSong) return null; // nic nie pokazuj, dopóki nie kliknięto
+  // console.log(activeSong);
 
   return (
-    <div className="fixed bottom-0 left-0 w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex items-center justify-between shadow-lg">
+    <div className="fixed z-50 bottom-0 left-0 w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex items-center justify-between shadow-lg">
       <div className="flex flex-row w-1/3">
         {/* Okładka */}
         <Image
@@ -74,7 +75,7 @@ export default function MiniPlayer() {
 
         {/* Info */}
         <div className="flex flex-col">
-          <span className="text-lg font-semibold truncate w-2/3">
+          <span className="text-lg font-semibold text-purple-400 truncate w-2/3">
             {activeSong.title}
           </span>
           <span className="text-base text-gray-400 truncate">
@@ -87,20 +88,20 @@ export default function MiniPlayer() {
         <div className="flex items-center gap-3 mb-2">
           <button
             onClick={() => dispatch(prevSong())}
-            className="p-2 rounded-full hover:bg-gray-800"
+            className="p-2 rounded-full hover:bg-gray-800 cursor-pointer"
           >
             <FaStepBackward size={20} />
           </button>
           <button
             onClick={togglePlay}
-            className="p-2 bg-blue-600 rounded-full hover:bg-blue-500"
+            className="p-2 bg-purple-600 rounded-full hover:bg-purple-500 cursor-pointer"
           >
             {isPlaying ? <FaPause size={22} /> : <FaPlay size={22} />}
           </button>
 
           <button
             onClick={() => dispatch(nextSong())}
-            className="p-2 rounded-full hover:bg-gray-800"
+            className="p-2 rounded-full hover:bg-gray-800 cursor-pointer"
           >
             <FaStepForward size={20} />
           </button>
