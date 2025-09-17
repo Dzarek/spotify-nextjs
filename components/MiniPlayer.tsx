@@ -63,8 +63,8 @@ export default function MiniPlayer() {
   // console.log(activeSong);
 
   return (
-    <div className="fixed z-50 bottom-0 left-0 w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex items-center justify-between shadow-lg">
-      <div className="flex flex-row w-[30%]">
+    <div className="fixed z-50 bottom-0 left-0 w-full md:w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex flex-wrap items-center justify-between shadow-lg">
+      <div className="flex flex-row w-full md:w-[30%] mb-5">
         {/* Okładka */}
         <Image
           src={
@@ -88,7 +88,7 @@ export default function MiniPlayer() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-[40%]">
+      <div className="flex flex-col items-center justify-center w-full order-1 md:order-0 md:w-[40%] mt-5 md:mt-0">
         {/* Kontrolki */}
         <div className="flex items-center gap-3 mb-2">
           <button
@@ -124,10 +124,11 @@ export default function MiniPlayer() {
         />
       </div>
       {/* Głośność */}
-      <div className="w-[15%] flex justify-end items-center">
+
+      <div className="w-1/2 md:w-[15%] flex md:justify-end items-center">
         <VolumeControl volume={volume} onChange={setVolume} />
       </div>
-      <div className="w-[15%] flex justify-end items-center">
+      <div className="w-1/2 md:w-[15%] flex justify-end items-center">
         <YouTubeLink song={activeSong} player={true} />
       </div>
 

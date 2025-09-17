@@ -8,7 +8,7 @@ export default function VideoBackground() {
 
   return (
     <video
-      className="fixed top-0 left-0 w-4/5 h-full object-cover z-0"
+      className="fixed top-0 left-0 w-full md:w-4/5 h-full object-cover z-0"
       src="/videoBg.mp4" // w public folder
       autoPlay
       muted

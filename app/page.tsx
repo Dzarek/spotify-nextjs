@@ -29,12 +29,12 @@ export default function Home() {
   if (!data) return <p>Brak danych</p>;
 
   return (
-    <div className="p-6">
+    <div className="p-3 md:p-6 w-full">
       <Title
         title="Najlepsze Listy Przebojów"
-        styles=" text-4xl font-bold mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
+        styles=" text-4xl font-bold mt-[10vh] md:mt-[0] mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
-      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-20 mb-[5vh]">
+      <div className="w-full  grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 md:gap-20 mb-[5vh]">
         {data.tracks.data.map((track) => (
           <SongCard key={track.id} song={track} />
         ))}

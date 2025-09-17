@@ -25,8 +25,8 @@ export default function RootLayout({
       <body className={saira.className}>
         <Providers>
           <VideoBackground />
-          <div className="w-4/5 mr-[20%] relative z-10 flex flex-col bg-[rgba(0,0,0,0.7)]">
-            <main className="flex-1 p-10">{children}</main>
+          <div className="w-full md:w-4/5 md:mr-[20%] relative z-10 flex flex-col bg-[rgba(0,0,0,0.7)]">
+            <main className="flex-1 p-2 md:p-10">{children}</main>
             <Footer />
             <MiniPlayer />
           </div>

@@ -43,12 +43,12 @@ export default function SongCard({ song }: { song: Track }) {
         alt={song.title}
         width={600}
         height={600}
-        className="w-[200px] mx-auto h-[200px] mb-3 object-cover rounded-full border-2 border-purple-200"
+        className="w-[100px] md:w-[200px] mx-auto h-[100px] md:h-[200px] mb-3 object-cover rounded-full border-2 border-purple-200"
       />
-      <h3 className="mt-2 text-xl tracking-wider font-semibold">
+      <h3 className="mt-2 text-lg md:text-xl tracking-wider font-semibold">
         {song.title}
       </h3>
-      <p className="text-lg text-gray-500">{song.artist.name}</p>
+      <p className="md:text-lg text-gray-500">{song.artist.name}</p>
     </div>
   );
 }

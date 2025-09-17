@@ -35,7 +35,7 @@ export default function SearchPage() {
       {error && <GlobalError error={error} />}
 
       {data && (
-        <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-20 mb-[5vh]">
+        <div className="w-full  grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 md:gap-20 mt-[5vh] md:mt-[10vh] mb-[5vh]">
           {data.data.map((track: Track) => (
             <SongCard key={track.id} song={track} />
           ))}

@@ -12,6 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 // import { Luckiest_Guy } from "next/font/google";
 import Title from "./Title";
+import { usePathname } from "next/navigation";
 
 // const luckiestGuy = Luckiest_Guy({
 //   subsets: ["latin"],
@@ -34,13 +35,13 @@ const links = [
   {
     id: 3,
     name: "Top Artyści",
-    to: "/",
+    to: "/artists",
     icon: HiOutlineUserGroup,
   },
   {
     id: 4,
     name: "Top Gatunek",
-    to: "/",
+    to: "/gatunki",
     icon: HiOutlineUserGroup,
   },
 ];
@@ -48,6 +49,8 @@ const links = [
 const logo = "/logo512.png";
 
 const NavLinks = ({ handleClick }: { handleClick?: () => void }) => {
+  const pathname = usePathname();
+
   return (
     <div className="mt-10">
       {links.map((link) => {
@@ -56,7 +59,9 @@ const NavLinks = ({ handleClick }: { handleClick?: () => void }) => {
             key={link.id}
             href={link.to}
             onClick={() => handleClick && handleClick()}
-            className="flex flex-row justify-start items-center my-8 text-xl font-semibold text-gray-200 duration-300 hover:text-purple-400"
+            className={`flex flex-row justify-start items-center my-8 text-2xl md:text-xl font-semibold text-gray-200 duration-300 hover:text-purple-400 ${
+              pathname === link.to && "text-purple-400 "
+            }`}
           >
             <link.icon className="w-6 h-6 mr-2" />
             {link.name}
@@ -83,27 +88,33 @@ const Navbar = () => {
         <Title title="MUSIC APP" styles=" text-2xl text-white" />
         <NavLinks />
       </div>
-      <div className="absolute md:hidden block top-6 left-3">
+      <div className="absolute z-50 md:hidden block top-6 left-3">
         {mobileMenuOpen ? (
           <RiCloseLine
             onClick={() => setMobileMenuOpen(false)}
-            className="w-6 h-6 text-white mr-2"
+            className="w-10 h-10 text-white mr-2"
           />
         ) : (
           <HiOutlineMenu
             onClick={() => setMobileMenuOpen(true)}
-            className="w-6 h-6 text-white mr-2"
+            className="w-10 h-10 text-white mr-2"
           />
         )}
       </div>
-      {/* <div
-        className={`fixed top-0 h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483d8b] backdrop-blur-lg z-10 p-6 md:hidden smooth-transition ${
+      <div
+        className={`fixed top-0 h-screen w-[80%] bg-gradient-to-tl from-white/5 to-[#100c33] backdrop-blur-lg z-10 p-6 pt-10 md:hidden duration-700 flex flex-col justify-start items-center ${
           mobileMenuOpen ? "left-0" : "-left-full"
         }`}
       >
-        <img src={logo} alt="logo" className="w-full h-14 object-contain" />
+        <Image
+          src={logo}
+          width={500}
+          height={500}
+          alt="logo"
+          className="w-3/5 object-contain"
+        />
         <NavLinks handleClick={() => setMobileMenuOpen(false)} />
-      </div> */}
+      </div>
     </>
   );
 };
