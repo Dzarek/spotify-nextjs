@@ -7,12 +7,16 @@ import { useGetTopChartsQuery } from "../services/deezerApi";
 import Loading from "./loading";
 import GlobalError from "./error";
 import { useDispatch } from "react-redux";
-import { setQueue } from "@/store/playerSlice";
+import { setActiveSong, setQueue } from "@/store/playerSlice";
 
 export default function Home() {
   const [limit, setLimit] = useState(50);
   const { data, error, isLoading } = useGetTopChartsQuery(limit);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setActiveSong(null));
+  }, [dispatch]);
 
   useEffect(() => {
     if (data && data.tracks?.data?.length) {

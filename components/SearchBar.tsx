@@ -20,12 +20,12 @@ export default function SearchBar({ onSearch }: Props) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Szukaj utworu lub artysty..."
-        className="flex-1 p-2 rounded-lg border border-gray-600 bg-gray-800 text-white"
+        placeholder="Wpisz nazwę utworu lub artystę..."
+        className="flex-1 text-xl  p-2 px-5 uppercase rounded-lg border border-gray-600 bg-gray-800 text-white"
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+        className="px-10 py-2 text-xl uppercase font-bold bg-purple-600 text-white rounded-lg hover:bg-purple-700"
       >
         Szukaj
       </button>

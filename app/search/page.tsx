@@ -6,7 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import SongCard from "@/components/SongCard";
 import Loading from "../loading";
 import GlobalError from "../error";
-import { setQueue, Track } from "@/store/playerSlice";
+import { setActiveSong, setQueue, Track } from "@/store/playerSlice";
 import { useDispatch } from "react-redux";
 
 export default function SearchPage() {
@@ -22,6 +22,10 @@ export default function SearchPage() {
       dispatch(setQueue(data.data));
     }
   }, [data, dispatch]);
+
+  useEffect(() => {
+    dispatch(setActiveSong(null));
+  }, [dispatch]);
 
   return (
     <div className="p-6 min-h-screen">

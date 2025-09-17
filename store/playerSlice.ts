@@ -8,7 +8,7 @@ export interface Track {
   album: { cover_medium?: string };
 }
 
-interface PlayerState {
+export interface PlayerState {
   queue: Track[];
   currentIndex: number;
   activeSong: Track | null;
@@ -31,13 +31,20 @@ const playerSlice = createSlice({
       state.currentIndex = 0;
       // state.activeSong = action.payload[0] || null;
     },
-    setActiveSong: (state, action: PayloadAction<Track>) => {
-      state.activeSong = action.payload;
-      state.currentIndex = state.queue.findIndex(
-        (t) => t.preview === action.payload.preview
-      );
-      state.isPlaying = true;
+    setActiveSong: (state, action: PayloadAction<Track | null>) => {
+      if (action.payload === null) {
+        state.activeSong = null;
+        state.currentIndex = -1;
+        state.isPlaying = false;
+      } else {
+        state.activeSong = action.payload;
+        state.currentIndex = state.queue.findIndex(
+          (t) => t.preview === action.payload!.preview
+        );
+        state.isPlaying = true;
+      }
     },
+
     playPause: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
     },
