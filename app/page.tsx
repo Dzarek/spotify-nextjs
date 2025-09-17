@@ -34,7 +34,7 @@ export default function Home() {
         title="Najlepsze Listy Przebojów"
         styles=" text-4xl font-bold mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-20 mb-[5vh]">
+      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-20 mb-[5vh]">
         {data.tracks.data.map((track) => (
           <SongCard key={track.id} song={track} />
         ))}
