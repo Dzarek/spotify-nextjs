@@ -8,6 +8,7 @@ import { FaPlay, FaPause, FaStepBackward, FaStepForward } from "react-icons/fa";
 import Image from "next/image";
 import ProgressBar from "./ProgressBar";
 import VolumeControl from "./VolumeControl";
+import YouTubeLink from "./YouTubeLink";
 
 export default function MiniPlayer() {
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ export default function MiniPlayer() {
 
   return (
     <div className="fixed z-50 bottom-0 left-0 w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex items-center justify-between shadow-lg">
-      <div className="flex flex-row w-1/3">
+      <div className="flex flex-row w-[30%]">
         {/* Okładka */}
         <Image
           src={
@@ -78,8 +79,8 @@ export default function MiniPlayer() {
         />
 
         {/* Info */}
-        <div className="flex flex-col">
-          <span className="text-lg font-semibold text-purple-400 truncate w-2/3">
+        <div className="flex flex-col w-[70%]">
+          <span className="text-lg font-semibold text-purple-400 truncate">
             {activeSong.title}
           </span>
           <span className="text-base text-gray-400 truncate">
@@ -87,7 +88,7 @@ export default function MiniPlayer() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-1/3">
+      <div className="flex flex-col items-center justify-center w-[40%]">
         {/* Kontrolki */}
         <div className="flex items-center gap-3 mb-2">
           <button
@@ -123,9 +124,13 @@ export default function MiniPlayer() {
         />
       </div>
       {/* Głośność */}
-      <div className="w-1/3 flex justify-end items-center">
+      <div className="w-[15%] flex justify-end items-center">
         <VolumeControl volume={volume} onChange={setVolume} />
       </div>
+      <div className="w-[15%] flex justify-end items-center">
+        <YouTubeLink song={activeSong} player={true} />
+      </div>
+
       <audio ref={audioRef} src={activeSong.preview} />
     </div>
   );

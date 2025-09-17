@@ -5,73 +5,37 @@ import { playPause, setActiveSong } from "../store/playerSlice";
 import { Track } from "../store/playerSlice";
 import Image from "next/image";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
-import { RootState, AppDispatch } from "@/store";
-import { fetchYoutubeLink } from "@/store/youtubeSlice";
-import { FaYoutube } from "react-icons/fa";
+import { RootState } from "@/store";
+import YouTubeLink from "./YouTubeLink";
 
 export default function SongCard({ song }: { song: Track }) {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector(
     (state: RootState) => state.player
   );
-
-  const key = `${song.artist.name} - ${song.title}`;
-  const videoUrl = useSelector((state: RootState) => state.youtube.links[key]);
-  const loading = useSelector(
-    (state: RootState) => state.youtube.loading[key] ?? false
-  );
-  const error = useSelector((state: RootState) => state.youtube.error[key]);
 
   const togglePlay = () => {
     dispatch(playPause(!isPlaying));
   };
 
-  const openYoutube = () => {
-    if (videoUrl) {
-      window.open(videoUrl, "_blank");
-    } else {
-      dispatch(
-        fetchYoutubeLink({ artist: song.artist.name, title: song.title })
-      )
-        .unwrap()
-        .then((res) => {
-          if (res.videoUrl) {
-            window.open(res.videoUrl, "_blank");
-          } else {
-            alert("Nie znaleziono wideo");
-          }
-        })
-        .catch(() => {
-          alert("Błąd podczas pobierania wideo");
-        });
-    }
-  };
-
   return (
     <div className="relative border border-purple-600 rounded-lg p-3 bg-zinc-900 hover:bg-zinc-900 duration-500">
       {activeSong?.id === song.id ? (
-        <div className="absolute top-0 left-0 w-full h-full  bg-[#cd42d1a1] duration-300 text-white  flex justify-center items-start">
+        <div className="absolute top-0 left-0 w-full h-full  bg-[#cd42d1a1] duration-300 text-white  flex flex-col  justify-center items-center">
           <button
             onClick={togglePlay}
-            className="text-4xl mt-[95px] cursor-pointer hover:text-black duration-300"
+            className="text-4xl mb-10 cursor-pointer hover:text-black duration-300"
           >
             {isPlaying ? <FaCirclePause /> : <FaCirclePlay />}
           </button>
+          <YouTubeLink song={song} player={false} />
         </div>
       ) : (
-        <div className="absolute top-0 left-0 w-full h-full opacity-0 bg-[rgba(0,0,0,0.5)] duration-300 text-white hover:opacity-100 flex justify-center items-start">
-          <FaCirclePlay
-            className="text-4xl mt-[95px] cursor-pointer"
-            onClick={() => dispatch(setActiveSong(song))}
-          />
-          <button
-            onClick={openYoutube}
-            className="text-4xl mt-[95px] cursor-pointer hover:text-red-600 duration-300"
-            disabled={loading}
-            title={error ? error : "Otwórz w YouTube"}
-          >
-            <FaYoutube />
-          </button>
+        <div
+          onClick={() => dispatch(setActiveSong(song))}
+          className="absolute top-0 left-0 w-full h-full opacity-0 bg-[rgba(0,0,0,0.8)] duration-300 text-white hover:opacity-100 flex justify-center items-start"
+        >
+          <FaCirclePlay className="text-4xl mt-[95px] cursor-pointer hover:text-purple-600 duration-300" />
         </div>
       )}
       <Image
