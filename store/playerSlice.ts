@@ -29,7 +29,7 @@ const playerSlice = createSlice({
     setQueue: (state, action: PayloadAction<Track[]>) => {
       state.queue = action.payload;
       state.currentIndex = 0;
-      state.activeSong = action.payload[0] || null;
+      // state.activeSong = action.payload[0] || null;
     },
     setActiveSong: (state, action: PayloadAction<Track>) => {
       state.activeSong = action.payload;

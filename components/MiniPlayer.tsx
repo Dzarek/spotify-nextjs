@@ -66,7 +66,11 @@ export default function MiniPlayer() {
       <div className="flex flex-row w-1/3">
         {/* Okładka */}
         <Image
-          src={activeSong.album.cover_medium}
+          src={
+            activeSong.album.cover_medium
+              ? activeSong.album.cover_medium
+              : "/logo.png"
+          }
           alt={activeSong.title}
           width={48}
           height={48}

@@ -24,7 +24,7 @@ export default function SearchPage() {
   }, [data, dispatch]);
 
   return (
-    <div className="p-6">
+    <div className="p-6 min-h-screen">
       <SearchBar onSearch={setQuery} />
 
       {isLoading && <Loading title="Szukam utworów..." />}
