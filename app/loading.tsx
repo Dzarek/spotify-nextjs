@@ -1,6 +1,10 @@
 export default function Loading({ title }: { title: string }) {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div
+      className={`flex h-screen md:w-[80vw] flex-col items-center justify-center ${
+        title === "Szukam utworów..." && "mt-[-20vh]"
+      } `}
+    >
       {/* <!-- From Uiverse.io by vishalmet -->  */}
       <div className="w-32 h-32 relative flex items-center justify-center mb-10">
         <div className="absolute inset-0 rounded-xl bg-blue-500/20 blur-xl animate-pulse"></div>

@@ -36,6 +36,7 @@ const YouTubeLink = ({ song, player }: { song: Track; player: boolean }) => {
         });
     }
   };
+  console.log(loading);
 
   return (
     <>
@@ -47,7 +48,7 @@ const YouTubeLink = ({ song, player }: { song: Track; player: boolean }) => {
           title={error ? error : "Otwórz w YouTube"}
         >
           <FaYoutube className="text-purple-800 text-4xl " />
-          Otwórz w YouTube
+          {loading ? "Wczytywanie..." : "Otwórz w YouTube"}
         </button>
       ) : (
         <button
@@ -56,7 +57,7 @@ const YouTubeLink = ({ song, player }: { song: Track; player: boolean }) => {
           disabled={loading}
           title={error ? error : "Otwórz w YouTube"}
         >
-          Otwórz w YouTube
+          {loading ? "Wczytywanie..." : "Otwórz w YouTube"}
         </button>
       )}
     </>
