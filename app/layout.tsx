@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -11,8 +12,11 @@ const saira = Saira_Condensed({
   weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Music App",
+  description: "Music App.",
+  manifest: "/manifest.json",
+  keywords: ["muzyka", "music"],
 };
 
 export default function RootLayout({
