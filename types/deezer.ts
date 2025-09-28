@@ -17,3 +17,13 @@ export interface DeezerChartResponse {
     data: DeezerTrack[];
   };
 }
+
+export type DeezerGenre = {
+  id: number;
+  name: string;
+  picture_medium: string;
+  type: "genre";
+};
+export type DeezerGenreResponse = {
+  data: DeezerGenre[];
+};

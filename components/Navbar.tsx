@@ -40,8 +40,8 @@ const links = [
   },
   {
     id: 4,
-    name: "Top Gatunek",
-    to: "/gatunki",
+    name: "Top Gatunki",
+    to: "/genres",
     icon: HiOutlineUserGroup,
   },
 ];

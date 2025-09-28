@@ -14,7 +14,19 @@ export const deezerApi = createApi({
       query: (query: string) =>
         `/search?q=${encodeURIComponent(query)}&limit=20`,
     }),
+    getGenres: builder.query({
+      query: () => "/genres",
+    }),
+    getGenreTracks: builder.query({
+      query: ({ genreId, limit = 50 }) =>
+        `/genres/${genreId}/tracks?limit=${limit}`,
+    }),
   }),
 });
 
-export const { useGetTopChartsQuery, useSearchTracksQuery } = deezerApi;
+export const {
+  useGetTopChartsQuery,
+  useSearchTracksQuery,
+  useGetGenresQuery,
+  useGetGenreTracksQuery,
+} = deezerApi;
