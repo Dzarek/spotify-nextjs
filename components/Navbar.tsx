@@ -40,7 +40,7 @@ const links = [
   },
   {
     id: 4,
-    name: "Top Gatunki",
+    name: "Gatunki Muzyczne",
     to: "/genres",
     icon: HiOutlineUserGroup,
   },

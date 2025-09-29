@@ -16,7 +16,7 @@ export default async function GenresPage() {
   return (
     <div className="p-3 md:p-6 w-full">
       <Title
-        title="Top Gatunki"
+        title="Gatunki Muzyczne"
         styles=" text-4xl font-bold mt-[10vh] md:mt-[0] mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
       <div className="w-full  grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-5 md:gap-10 mb-[5vh]">

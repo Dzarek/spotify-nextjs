@@ -7,14 +7,18 @@ type Params = {
 };
 
 export async function GET(req: NextRequest, { params }: Params) {
+  const { genreId } = await params;
+
   const { searchParams } = new URL(req.url);
   const limit = searchParams.get("limit") || "50";
-  const { genreId } = params;
+  const index = searchParams.get("index") || "0";
+  console.log(index);
 
   try {
     const res = await fetch(
-      `https://api.deezer.com/editorial/${genreId}/charts?limit=${limit}`
+      `https://api.deezer.com/chart/${genreId}/tracks?limit=${limit}&index=${index}`
     );
+
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {

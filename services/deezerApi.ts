@@ -18,8 +18,8 @@ export const deezerApi = createApi({
       query: () => "/genres",
     }),
     getGenreTracks: builder.query({
-      query: ({ genreId, limit = 50 }) =>
-        `/genres/${genreId}/tracks?limit=${limit}`,
+      query: ({ genreId, limit = 50, index }) =>
+        `/genres/${genreId}/tracks?limit=${limit}&index=${index}`,
     }),
   }),
 });
