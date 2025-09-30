@@ -21,6 +21,10 @@ export const deezerApi = createApi({
       query: ({ genreId, limit = 50, index }) =>
         `/genres/${genreId}/tracks?limit=${limit}&index=${index}`,
     }),
+    getArtists: builder.query({
+      query: ({ letter = "", limit = 50, index = 0 }) =>
+        `/artists?letter=${letter}&limit=${limit}&index=${index}`,
+    }),
   }),
 });
 
@@ -29,4 +33,5 @@ export const {
   useSearchTracksQuery,
   useGetGenresQuery,
   useGetGenreTracksQuery,
+  useGetArtistsQuery,
 } = deezerApi;

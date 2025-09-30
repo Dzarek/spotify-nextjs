@@ -36,7 +36,6 @@ const YouTubeLink = ({ song, player }: { song: Track; player: boolean }) => {
         });
     }
   };
-  console.log(loading);
 
   return (
     <>

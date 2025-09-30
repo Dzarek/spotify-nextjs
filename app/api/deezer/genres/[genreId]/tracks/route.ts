@@ -12,7 +12,6 @@ export async function GET(req: NextRequest, { params }: Params) {
   const { searchParams } = new URL(req.url);
   const limit = searchParams.get("limit") || "50";
   const index = searchParams.get("index") || "0";
-  console.log(index);
 
   try {
     const res = await fetch(

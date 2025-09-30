@@ -5,6 +5,8 @@ import SongCard from "./SongCard";
 import { useEffect, useState } from "react";
 import { DeezerTrack } from "@/types/deezer";
 import Loading from "@/app/loading";
+import { useDispatch } from "react-redux";
+import { setQueue } from "@/store/playerSlice";
 
 const GenreTracks = ({
   genreId,
@@ -16,6 +18,7 @@ const GenreTracks = ({
   const [tracks, setTracks] = useState<DeezerTrack[]>(initialTracks);
   const [index, setIndex] = useState(0);
   const limit = 50;
+  const dispatch = useDispatch();
   const { data, error, isLoading } = useGetGenreTracksQuery(
     { genreId, limit, index },
     { skip: index === 0 }
@@ -27,8 +30,11 @@ const GenreTracks = ({
     }
   }, [data]);
 
+  useEffect(() => {
+    dispatch(setQueue(tracks));
+  }, [tracks, dispatch]);
+
   const loadMore = () => setIndex((prev) => prev + limit);
-  console.log(data);
 
   return (
     <>
