@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  context: { params: { genreId: string } }
-) {
+interface RouteContext {
+  params: {
+    genreId: string;
+  };
+}
+
+export async function GET(req: NextRequest, context: RouteContext) {
   const { genreId } = context.params;
 
   const { searchParams } = new URL(req.url);
