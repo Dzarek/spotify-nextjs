@@ -4,11 +4,11 @@ import { DeezerGenre } from "@/types/deezer";
 import Link from "next/link";
 import { RiArrowGoBackFill } from "react-icons/ri";
 
-type Params = {
-  params: { id: string };
-};
-
-export default async function GenrePage({ params }: Params) {
+export default async function GenrePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   const genresRes = await fetch("https://api.deezer.com/genre");
