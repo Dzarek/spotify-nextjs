@@ -5,6 +5,8 @@ import { RootState } from "../store";
 import { nextSong, playPause, prevSong } from "../store/playerSlice";
 import { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaStepBackward, FaStepForward } from "react-icons/fa";
+import { GrExpand, GrContract } from "react-icons/gr";
+
 import Image from "next/image";
 import ProgressBar from "./ProgressBar";
 import VolumeControl from "./VolumeControl";
@@ -20,6 +22,7 @@ export default function MiniPlayer() {
   const [progress, setProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.8);
+  const [fullSize, setFullSize] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -59,12 +62,41 @@ export default function MiniPlayer() {
     dispatch(playPause(!isPlaying));
   };
 
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setFullSize(true);
+    } else {
+      setFullSize(false);
+    }
+  }, []);
+
   if (!activeSong) return null; // nic nie pokazuj, dopóki nie kliknięto
   // console.log(activeSong);
 
   return (
-    <div className="fixed z-50 bottom-0 left-0 w-full md:w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex flex-wrap items-center justify-between shadow-lg">
-      <div className="flex flex-row w-full md:w-[30%] mb-5">
+    <div
+      className={`${
+        fullSize
+          ? "h-screen py-[5vh] pt-[7vh]"
+          : "h-auto flex flex-wrap items-center justify-between"
+      }  fixed z-50 bottom-0 left-0 w-full md:w-4/5 bg-[rgba(0,0,0,0.9)] text-white p-5 px-10 flex flex-wrap items-center justify-between shadow-lg`}
+    >
+      {fullSize ? (
+        <GrContract
+          className="absolute top-7 left-5 cursor-pointer text-white text-2xl md:hidden"
+          onClick={() => setFullSize(false)}
+        />
+      ) : (
+        <GrExpand
+          className="absolute top-7 left-5 cursor-pointer text-white text-2xl md:hidden"
+          onClick={() => setFullSize(true)}
+        />
+      )}
+      <div
+        className={`flex w-full md:w-[30%] mb-5 md:ml-0 ${
+          fullSize ? "flex-col mb-[-5vh]" : "flex-row ml-7"
+        }`}
+      >
         {/* Okładka */}
         <Image
           src={
@@ -73,22 +105,40 @@ export default function MiniPlayer() {
               : "/logo.png"
           }
           alt={activeSong.title}
-          width={48}
-          height={48}
-          className="w-12 h-12 rounded-md object-cover mr-5"
+          width={fullSize ? 300 : 48}
+          height={fullSize ? 300 : 48}
+          className={`${
+            fullSize ? "w-[80%] mx-auto mb-5" : "w-12 h-12 mr-5"
+          } rounded-md object-cover `}
         />
 
         {/* Info */}
-        <div className="flex flex-col w-[70%]">
-          <span className="text-lg font-semibold text-purple-400 truncate">
+        <div
+          className={`${
+            fullSize ? "mx-auto text-center" : ""
+          } flex flex-col w-[70%]`}
+        >
+          <span
+            className={`${
+              fullSize ? "text-3xl mb-3" : "text-lg"
+            } font-semibold text-purple-400 truncate`}
+          >
             {activeSong.title}
           </span>
-          <span className="text-base text-gray-400 truncate">
+          <span
+            className={`${
+              fullSize ? "text-xl" : "text-base"
+            } text-gray-400 truncate`}
+          >
             {activeSong.artist.name}
           </span>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-full order-1 md:order-0 md:w-[40%] mt-5 md:mt-0">
+      <div
+        className={`${
+          fullSize ? "order-0" : "order-1"
+        } flex flex-col items-center justify-center w-full md:order-0 md:w-[40%] mt-5 md:mt-0`}
+      >
         {/* Kontrolki */}
         <div className="flex items-center gap-3 mb-2">
           <button

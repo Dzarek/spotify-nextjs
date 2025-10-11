@@ -10,14 +10,8 @@ import {
 } from "react-icons/hi";
 import Link from "next/link";
 import Image from "next/image";
-// import { Luckiest_Guy } from "next/font/google";
 import Title from "./Title";
 import { usePathname } from "next/navigation";
-
-// const luckiestGuy = Luckiest_Guy({
-//   subsets: ["latin"],
-//   weight: "400",
-// });
 
 const links = [
   {

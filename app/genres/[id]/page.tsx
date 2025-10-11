@@ -1,6 +1,8 @@
 import GenreTracks from "@/components/GenreTracks";
 import Title from "@/components/Title";
 import { DeezerGenre } from "@/types/deezer";
+import Link from "next/link";
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 type Params = {
   params: { id: string };
@@ -21,9 +23,16 @@ export default async function GenrePage({ params }: Params) {
 
   return (
     <div className="p-3 md:p-6 w-full">
+      <Link
+        href="/genres"
+        className="text-3xl flex items-center font-bold mt-[1vh] md:mt-0 text-gray-400 hover:text-white duration-300 mx-auto text-center md:text-left"
+      >
+        <RiArrowGoBackFill className="mr-2" />
+        Gatunki Muzyczne
+      </Link>
       <Title
         title={currentGenre ? currentGenre.name : "Top Utwory Muzyczne"}
-        styles=" text-4xl font-bold mt-[10vh] md:mt-[0] mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
+        styles=" text-4xl font-bold mt-[5vh] md:mt-[0] mb-[10vh] text-[var(--secondColor)] mx-auto text-center"
       />
       <GenreTracks genreId={id} initialTracks={data.data} />
     </div>

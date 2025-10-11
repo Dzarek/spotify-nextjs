@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  params: {
-    genreId: string;
-  };
-};
-
-export async function GET(req: NextRequest, { params }: Params) {
-  const { genreId } = await params;
+export async function GET(
+  req: NextRequest,
+  context: { params: { genreId: string } }
+) {
+  const { genreId } = context.params;
 
   const { searchParams } = new URL(req.url);
   const limit = searchParams.get("limit") || "50";
