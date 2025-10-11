@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-interface RouteContext {
-  params: {
-    genreId: string;
-  };
-}
-
-export async function GET(req: NextRequest, context: RouteContext) {
-  const { genreId } = context.params;
+export async function GET(req: NextRequest, context: any) {
+  const genreId = context.params?.genreId;
 
   const { searchParams } = new URL(req.url);
   const limit = searchParams.get("limit") || "50";
